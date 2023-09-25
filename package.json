@@ -1,0 +1,22 @@
+{
+  "name": "kanbee",
+  "private": true,
+  "type": "module",
+  "overrides": {
+    "vue": "latest"
+  },
+  "scripts": {
+    "dev": "nuxt dev",
+    "dev:host": "nuxt dev --host",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxtjs/color-mode": "^3.3.0",
+    "@nuxtjs/tailwindcss": "^6.8.0",
+    "@pinia/nuxt": "^0.4.11",
+    "nuxt": "^3.7.3",
+    "pinia": "^2.1.6"
+  }
+}
