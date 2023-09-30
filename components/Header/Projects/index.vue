@@ -44,7 +44,7 @@ const newProject = reactive({
 
 const addProject = () => {
   addName(newProject.name)
-  useRouter().push(convertHashToPath(newProject.name))
+  useRouter().push(`/p${convertHashToPath(newProject.name)}`)
   newProject.isOpen = false
 }
 

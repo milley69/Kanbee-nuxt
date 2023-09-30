@@ -6,9 +6,10 @@ headers.append('Accept', 'application/json')
 export const useAuth = () => {
   const { setUser } = useUser()
   const router = useRouter()
+  const { $URL } = useNuxtApp()
 
   const signUp = async (email: string, password: string, username: string) => {
-    const data = await $fetch('http://localhost:3555/api/auth/signup', {
+    const data = await $fetch(`${$URL}/auth/signup`, {
       method: 'POST',
       body: JSON.stringify({ email, username, password }),
     })
@@ -30,7 +31,7 @@ export const useAuth = () => {
     // return data
 
     try {
-      const data = await fetch('http://localhost:3555/api/auth/signin', {
+      const data = await fetch(`${$URL}/auth/signin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -46,37 +47,23 @@ export const useAuth = () => {
   }
 
   const logOut = async () => {
-    await useLazyFetch('http://localhost:3555/api/auth/signout', {
+    await $fetch(`${$URL}/auth/signout`, {
       method: 'GET',
     })
     router.push('/sign-in')
   }
 
   const initUser = async () => {
+    console.log('$URL: ', $URL)
     const uid = useCookie('_uid').value
     if (!uid && typeof uid !== 'string') return
     try {
-      // const { data, error, } = await useFetch<Record<'user', User>>(`http://localhost:3555/api/users/${uid}`, {
-      //   method: 'GET',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   credentials: 'include',
-      // })
-      // console.log('error: ', error.value)
-
-      const data = await $fetch<Record<'user', User>>(`http://localhost:3555/api/users/${uid}`, {
+      const data = await $fetch<Record<'user', User> | null>(`${$URL}/users/${uid}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
       })
-      console.log('data.value: ', data)
-      // if (data.value) setUser(data.value.user)
-      // watch(data, (updateDate) => {
-      // console.log('updateDate: ', updateDate)
-      // if (updateDate) setUser(updateDate.user)
-      // })
-
-      // console.log('data.value: ', data.value)
-      // if (data.value) setUser(data.value.user)
+      if (data) setUser(data.user)
     } catch (error) {
       console.log('error: ', error)
     }

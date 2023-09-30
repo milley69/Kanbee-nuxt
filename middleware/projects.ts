@@ -4,7 +4,7 @@ import { storeToRefs } from 'pinia'
 export default defineNuxtRouteMiddleware((to, from) => {
   const { namesProjects } = storeToRefs(useProjects())
 
-  if (!namesProjects.value.includes(to.path)) {
+  if (!namesProjects.value.includes(to.path.slice(2))) {
     return navigateTo('/')
   }
 })
