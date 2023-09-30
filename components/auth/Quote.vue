@@ -10,38 +10,41 @@
     <div class="flex items-center gap-4">
       <div class="avatar inline-block">
         <div class="w-12 mask mask-squircle">
-          <img :src="quote.user.avatar" :alt="quote.user.name" />
+          <img :src="quote.avatar" :alt="quote.username" />
         </div>
       </div>
 
       <span class="flex flex-col">
-        <cite class="not-italic font-medium whitespace-nowrap">@{{ quote.user.name }}</cite>
+        <cite class="not-italic font-medium whitespace-nowrap">@{{ quote.username }}</cite>
       </span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import type { Quotes } from '@/types'
 const { getQuotes } = useQuotes()
 
-const isLoading = computed(() => quote.text === '' && quote.user.name === '')
+const isLoading = computed(() => quote.text === '' && quote.username === '' && quote.avatar === '')
 
 const quote = reactive({
-  user: {
-    name: '',
-    // avatar: 'https://cdn.discordapp.com/avatars/1071044442598932560/a619d62eeeba62890a1ee282e6bbc0e8.webp?size=128',
-    avatar: 'http://localhost:3555/api/files/profile-image/meow5.png',
-  },
+  username: '',
+  avatar: '',
   text: '',
 })
 
-const generateRandom = (maxLimit = 100) => Math.floor(Math.random() * maxLimit)
-
-onMounted(async () => {
-  const res: any = await getQuotes(generateRandom(500))
-  if (res) {
-    quote.user.name = res.name
-    quote.text = res.body
+const fetchQuotes = async () => {
+  try {
+    const res: Quotes = await getQuotes()
+    if (res) {
+      quote.username = res.username
+      quote.avatar = res.avatar
+      quote.text = res.text
+    }
+  } catch (error) {
+    console.error(error)
   }
-})
+}
+
+onMounted(fetchQuotes)
 </script>

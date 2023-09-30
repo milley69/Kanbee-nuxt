@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 const links = [
   { path: '/', title: 'Inbox', icon: 'bx-popsicle' },
-  { path: '/', title: 'My Activity', icon: 'bx-popsicle' },
+  { path: '/profile', title: 'My Activity', icon: 'bx-popsicle' },
   { path: '/time', title: 'Time', icon: 'bx-popsicle' },
 ]
 </script>

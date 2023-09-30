@@ -1,7 +1,10 @@
+import type { Quotes } from '@/types'
+
 export const useQuotes = () => {
-  const getQuotes = async (id: number) => {
-    const q = await $fetch('https://jsonplaceholder.typicode.com/comments/' + id)
-    return q
+  const { $URL } = useNuxtApp()
+  const getQuotes = async () => {
+    const quote = await $fetch<Quotes>(`${$URL}/quotes`)
+    return quote
   }
 
   return { getQuotes }

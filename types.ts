@@ -18,3 +18,9 @@ export interface User {
 
 export type userForm = Record<'name' | 'email' | 'password', string>
 export type authStatus = 'authenticated' | 'unauthenticated' | 'loading'
+
+export interface Quotes {
+  text: string
+  username: string
+  avatar: string
+}

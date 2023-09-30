@@ -5,11 +5,10 @@
 </template>
 
 <script lang="ts" setup>
+import { useBreakpoints } from '@vueuse/core'
 const { $colorMode } = useNuxtApp()
 
-import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
-const breakpoints = useBreakpoints(breakpointsTailwind)
-const isMobile = breakpoints.smallerOrEqual('sm')
+const isMobile = useBreakpoints({ sm: 640 }).smallerOrEqual('sm')
 
 const setColorTheme = () => {
   if ($colorMode.preference === 'light') $colorMode.preference = 'dark'

@@ -74,7 +74,7 @@ const signInHandler = async () => {
   if (res) {
     console.log('res: ', res)
 
-    router.push('/')
+    router.push('/').catch(() => {})
   }
 }
 </script>

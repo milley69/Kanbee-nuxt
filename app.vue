@@ -5,6 +5,11 @@
 </template>
 
 <script setup lang="ts">
+useHead({
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `Kanbee | ${titleChunk}` : 'Kanbee'
+  },
+})
 // import type { User } from '@/types'
 // const { setUser } = useUser()
 

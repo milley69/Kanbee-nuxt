@@ -20,8 +20,8 @@ export const useUser = defineStore('UserPinia', {
   actions: {
     changeStatus(status: authStatus) {
       this.status = status
-      if (status === 'authenticated') useCookie('isAuth').value = 'true'
-      else if (status === 'unauthenticated') useCookie('isAuth').value = 'false'
+      // if (status === 'authenticated') useCookie('isAuth').value = 'true'
+      // else if (status === 'unauthenticated') useCookie('isAuth').value = 'false'
     },
     setUser(user: User) {
       this.user = user

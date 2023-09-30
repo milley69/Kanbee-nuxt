@@ -7,10 +7,21 @@
   <section
     class="bg-base-100 min-h-[calc(100vh-4.2rem)] hidden lg:w-7/12 lg:flex justify-center items-center overflow-y-hidden"
   >
-    <LazyAuthQuote />
+    <ClientOnly>
+      <LazyAuthQuote v-if="!isMobile" />
+    </ClientOnly>
   </section>
 </template>
 
 <script setup lang="ts">
+import { useBreakpoints } from '@vueuse/core'
 definePageMeta({ layout: 'auth' })
+useHead({ title: 'Authorization' })
+
+const isMobile = useBreakpoints({ lg: 1024 }).smallerOrEqual('lg')
+
+onMounted(() => {
+  const isAuth = Boolean(useCookie('token').value && useCookie('_uid').value)
+  if (isAuth) useRouter().push('/')
+})
 </script>

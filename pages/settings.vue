@@ -1,7 +1,7 @@
 <template>
-  <div>Page: help</div>
+  <div>Page: Settings</div>
 </template>
 
 <script lang="ts" setup>
-useHead({ title: 'Help' })
+useHead({ title: 'Settings' })
 </script>

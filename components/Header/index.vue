@@ -1,5 +1,5 @@
 <template>
-  <div class="drawer md:drawer-open">
+  <div class="drawer lg:drawer-open">
     <input id="drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content">
       <div
@@ -18,7 +18,6 @@
           </div>
           <div class="flex-0">
             <ui-theme-switcher />
-            <!-- <UiThemeSwitcher /> -->
           </div>
         </nav>
       </div>
@@ -26,7 +25,7 @@
     </div>
     <div class="drawer-side z-40">
       <label for="drawer" class="drawer-overlay" aria-label="Close menu"></label>
-      <aside class="bg-base-200 w-80 h-[inherit] border-r flex flex-col justify-between">
+      <aside class="bg-base-200 w-80 h-[inherit] border-r flex flex-col justify-between pt-4 lg:pt-0">
         <div>
           <div
             class="bg-base-200 sticky top-0 z-20 hidden items-center gap-2 bg-opacity-90 py-2 backdrop-blur lg:flex h-16 pl-4"
